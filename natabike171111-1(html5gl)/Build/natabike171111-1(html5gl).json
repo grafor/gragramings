@@ -1,0 +1,11 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "natabike171111-1(html5gl).data.unityweb",
+"asmCodeUrl": "natabike171111-1(html5gl).asm.code.unityweb",
+"asmMemoryUrl": "natabike171111-1(html5gl).asm.memory.unityweb",
+"asmFrameworkUrl": "natabike171111-1(html5gl).asm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

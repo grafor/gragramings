@@ -2,7 +2,7 @@
     .cube {
         width: 500px;
         height: 500px;
-        perspective: 3000px;
+        perspective: 1000px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -46,7 +46,7 @@
         transform-origin: center left;
     }
 
-   .bottom {
+    .bottom {
         transform: rotateZ(-90deg);
     }
 </style>
@@ -65,3 +65,8 @@
     <div class="bottom">
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var cube = document.querySelector(".cube");
+        for (var i = 0; i < 3; i++) {
+            for (var j = 0;

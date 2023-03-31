@@ -1,18 +1,28 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <style>
-      img.rotating-image {
-        animation: rotate-forever infinite;
-      }
+<head>
+  <style>
+    img.rotating-image {
+      animation: rotate-forever infinite;
+    }
 
-      @keyframes rotate-forever {
-        to {
-          transform: rotate(360deg);
-        }
+    @keyframes rotate-forever {
+      to {
+        transform: rotate(360deg);
       }
-    </style>
-  </head>
-  <body>
-    <img src="https://grafor.github.io/gragramings/imgtest/image/img.png" class="rotating-image">
-  </body>
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var images_url = 'https://grafor.github.io/gragramings/imgtest/images/img.png';
+      var image_element = $('<img>').attr('src', images_url);
+      image_element.css('position', 'fixed').css('top', '50%').css('left', '50%');
+      image_element.appendTo('body').click(function() {});
+    });
+  </script>
+</head>
+<body>
+  <img src="https://grafor.github.io/gragramings/imgtest/images/img.png" class="rotating-image">
+</body>
 </html>

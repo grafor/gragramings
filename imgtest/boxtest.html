@@ -1,72 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
 <style>
-    .cube {
-        width: 500px;
-        height: 500px;
-        perspective: 1000px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .front,
-    .back,
-    .right,
-    .left,
-    .top,
-    .bottom {
-        width: 50%;
-        height: 50%;
-        transform-style: preserve-3d;
-        transition: transform 0.5s;
-        box-shadow: 0 0 5px 5px rgb(0, 0, 0);
-    }
-
-    .front {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-        transform-origin: center;
-    }
-
-    .back {
-        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
-        transform-origin: center;
-    }
-
-    .right {
-        transform: rotateY(90deg);
-        transform-origin: center bottom;
-    }
-
-    .left {
-        transform: rotateY(-90deg);
-        transform-origin: center top;
-    }
-
-    .top {
-        transform: rotateZ(90deg);
-        transform-origin: center left;
-    }
-
-    .bottom {
-        transform: rotateZ(-90deg);
-    }
+  .cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(45deg);
+  }
+  .face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    opacity: 0.9;
+  }
+  .front {
+    background-color: red;
+    transform: translateZ(100px);
+  }
+  .back {
+    background-color: blue;
+    transform: rotateY(180deg) translateZ(100px);
+  }
+  .left {
+    background-color: green;
+    transform: rotateY(-90deg) translateZ(100px);
+  }
+  .right {
+    background-color: yellow;
+    transform: rotateY(90deg) translateZ(100px);
+  }
+  .top {
+    background-color: orange;
+    transform: rotateX(90deg) translateZ(100px);
+  }
+  .bottom {
+    background-color: purple;
+    transform: rotateX(-90deg) translateZ(100px);
+  }
 </style>
+</head>
+<body>
 
 <div class="cube">
-    <div class="front">
-    </div>
-    <div class="back">
-    </div>
-    <div class="right">
-    </div>
-    <div class="left">
-    </div>
-    <div class="top">
-    </div>
-    <div class="bottom">
-    </div>
+  <div class="face front"></div>
+  <div class="face back"></div>
+  <div class="face left"></div>
+  <div class="face right"></div>
+  <div class="face top"></div>
+  <div class="face bottom"></div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var cube = document.querySelector(".cube");
-        for (var i = 0; i < 3; i++) {
-            for (var j = 0;
+
+</body>
+</html>

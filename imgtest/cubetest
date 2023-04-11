@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+}
+#front {
+  background-color: red;
+  transform: translateZ(100px);
+}
+#back {
+  background-color: green;
+  transform: rotateY(180deg) translateZ(100px);
+}
+#left {
+  background-color: blue;
+  transform: rotateY(-90deg) translateZ(100px);
+}
+#right {
+  background-color: yellow;
+  transform: rotateY(90deg) translateZ(100px);
+}
+#top {
+  background-color: orange;
+  transform: rotateX(90deg) translateZ(100px);
+}
+#bottom {
+  background-color: purple;
+  transform: rotateX(-90deg) translateZ(100px);
+}
+</style>
+</head>
+<body>
+
+<div id="cube">
+  <div class="face" id="front"></div>
+  <div class="face" id="back"></div>
+  <div class="face" id="left"></div>
+  <div class="face" id="right"></div>
+  <div class="face" id="top"></div>
+  <div class="face" id="bottom"></div>
+</div>
+
+<script>
+let cube = document.querySelector('#cube');
+let x = 0;
+let y = -45;
+
+document.onkeydown = function(e) {
+    if (e.keyCode == '37') {
+        y -= 5;
+    } else if (e.keyCode == '39') {
+        y +=5;
+    } else if (e.keyCode == '38') {
+        x -=5;
+    } else if (e.keyCode == '40') {
+        x +=5;
+    }
+    cube.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
+}
+
+let isDragging = false;
+let currentX;
+let currentY;
+let initialX;
+let initialY;
+let xOffset = y * -1;
+let yOffset = x;
+
+cube.addEventListener("mousedown", dragStart, false);
+cube.addEventListener("mouseup", dragEnd, false);
+cube.addEventListener("mousemove", drag, false);
+
+function dragStart(e) {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+
+    if (e.target === cube) {
+        isDragging = true;
+    }
+}
+
+function dragEnd(e) {
+    initialX = currentX;
+    initialY = currentY;
+
+    isDragging = false;
+}
+
+function drag(e) {
+    if (isDragging) {
+        e.preventDefault();
+        currentX = e.clientX - initialX;
+        currentY = e.clientY - initialY;
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        setTranslate(currentX, currentY, cube);
+    }
+}
+
+function setTranslate(xPos, yPos, el) {
+    el.style.transform = "rotateX(" + (yPos * -1) + "deg) rotateY(" + xPos + "deg)";
+}
+</script>
+
+</body>
+</html>

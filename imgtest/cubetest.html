@@ -54,7 +54,7 @@
 </div>
 
 <script>
-  let cube = document.querySelector('#cube');
+let cube = document.querySelector('#cube');
 let x = Math.random() * 360 - 180;
 let y = Math.random() * 360 - 180;
 
@@ -62,7 +62,7 @@ cube.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
 
 document.onkeydown = function(e) {
     if (e.keyCode == '37') {
-        y -= 5;
+        y -=5;
     } else if (e.keyCode == '39') {
         y +=5;
     } else if (e.keyCode == '38') {
@@ -85,9 +85,18 @@ cube.addEventListener("mousedown", dragStart, false);
 cube.addEventListener("mouseup", dragEnd, false);
 cube.addEventListener("mousemove", drag, false);
 
+cube.addEventListener("touchstart", dragStart, false);
+cube.addEventListener("touchend", dragEnd, false);
+cube.addEventListener("touchmove", drag, false);
+
 function dragStart(e) {
-    initialX = e.clientX - xOffset;
-    initialY = e.clientY - yOffset;
+    if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - xOffset;
+        initialY = e.touches[0].clientY - yOffset;
+    } else {
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+    }
 
     if (e.target === cube) {
         isDragging = true;
@@ -104,18 +113,23 @@ function dragEnd(e) {
 function drag(e) {
     if (isDragging) {
         e.preventDefault();
-        currentX = e.clientX - initialX;
-        currentY = e.clientY - initialY;
+        if (e.type === "touchmove") {
+            currentX = e.touches[0].clientX - initialX;
+            currentY = e.touches[0].clientY - initialY; 
+        } else {
+            currentX = e.clientX - initialX; 
+            currentY = e.clientY - initialY; 
+        }
+      
+xOffset = currentX; 
+yOffset = currentY;
 
-        xOffset = currentX;
-        yOffset = currentY;
-
-        setTranslate(currentX, currentY, cube);
-    }
+setTranslate(currentX, currentY, cube);
+}
 }
 
 function setTranslate(xPos, yPos, el) {
-    el.style.transform = "rotateX(" + (yPos * -1) + "deg) rotateY(" + xPos + "deg)";
+el.style.transform = "rotateX(" + (yPos * -1) + "deg) rotateY(" + xPos + "deg)";
 }
 </script>
 

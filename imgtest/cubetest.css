@@ -1,0 +1,61 @@
+$size: 50vmin;
+
+@mixin face($color: white, $tx: 0px, $ty: 0px, $tz: 0px, $rx: 0deg, $ry: 0deg) {
+  background-color: $color;
+  transform: translateX($tx) translateY($ty) translateZ($tz) rotateX($rx)
+    rotateY($ry);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.cube {
+  transform: rotateX(-25deg) rotateY(25deg);
+  cursor: move;
+  transform-style: preserve-3d;
+  position: absolute;
+  width: $size;
+  height: $size;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
+  .face {
+    box-sizing: border-box;
+    border: 5px solid black;
+    width: $size;
+    height: $size;
+    position: absolute;
+    top: 0;
+    left: 0;
+    &.front {
+      @include face($tz: $size / 2);
+    }
+    &.back {
+      @include face($tz: -$size / 2);
+    }
+    &.top {
+      @include face($ty: -$size / 2, $rx: 90deg);
+    }
+    &.bottom {
+      @include face($ty: $size / 2, $rx: 90deg);
+    }
+    &.left {
+      @include face($tx: -$size / 2, $ry: 90deg);
+    }
+    &.right {
+      @include face($tx: $size / 2, $ry: 90deg);
+    }
+  }
+}

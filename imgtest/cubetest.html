@@ -51,9 +51,11 @@
 </div>
 
 <script>
-let cube = document.querySelector('#cube');
+  let cube = document.querySelector('#cube');
 let x = Math.random() * 360 - 180;
 let y = Math.random() * 360 - 180;
+
+cube.style.transform = `rotateX(${x}deg) rotateY(${y}deg)`;
 
 document.onkeydown = function(e) {
     if (e.keyCode == '37') {

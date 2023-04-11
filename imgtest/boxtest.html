@@ -2,7 +2,67 @@
 <html>
 <head>
 <style>
+  .cube {<!DOCTYPE html>
+<html>
+<head>
+<style>
   .cube {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 5s linear infinite;
+  }
+  .face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    opacity: 0.9;
+  }
+  .front {
+    background-color: red;
+    transform: translateZ(100px);
+  }
+  .back {
+    background-color: blue;
+    transform: rotateY(180deg) translateZ(100px);
+  }
+  .left {
+    background-color: green;
+    transform: rotateY(-90deg) translateZ(100px);
+  }
+  .right {
+    background-color: yellow;
+    transform: rotateY(90deg) translateZ(100px);
+  }
+  .top {
+    background-color: orange;
+    transform: rotateX(90deg) translateZ(100px);
+  }
+  .bottom {
+    background-color: purple;
+    transform: rotateX(-90deg) translateZ(100px);
+  }
+  
+  @keyframes rotate {
+    from {transform: rotateX(0deg) rotateY(0deg);}
+    to {transform: rotateX(360deg) rotateY(360deg);}
+  }
+</style>
+</head>
+<body>
+
+<div class="cube">
+  <div class="face front"></div>
+  <div class="face back"></div>
+  <div class="face left"></div>
+  <div class="face right"></div>
+  <div class="face top"></div>
+  <div class="face bottom"></div>
+</div>
+
+</body>
+</html>
     width: 200px;
     height: 200px;
     position: relative;

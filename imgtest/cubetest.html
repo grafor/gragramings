@@ -81,13 +81,13 @@ let initialY;
 let xOffset = y * -1;
 let yOffset = x;
 
-cube.addEventListener("mousedown", dragStart, false);
-cube.addEventListener("mouseup", dragEnd, false);
-cube.addEventListener("mousemove", drag, false);
+document.addEventListener("mousedown", dragStart, false);
+document.addEventListener("mouseup", dragEnd, false);
+document.addEventListener("mousemove", drag, false);
 
-cube.addEventListener("touchstart", dragStart, false);
-cube.addEventListener("touchend", dragEnd, false);
-cube.addEventListener("touchmove", drag, false);
+document.addEventListener("touchstart", dragStart, false);
+document.addEventListener("touchend", dragEnd, false);
+document.addEventListener("touchmove", drag, false);
 
 function dragStart(e) {
     if (e.type === "touchstart") {
